@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.zhoutt.mall.dao.IHotMapper">
+    <resultMap id="hotMap" type="edu.zhoutt.mall.pojo.Hot">
+        <id column="id" property="id"/>
+        <result column="product_id" property="productId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <resultMap id="productMap" type="edu.zhoutt.mall.pojo.Product">
+        <id column="id" property="id"/>
+        <result column="is_down" property="isDown"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="hotColumns">
+        `id`, `product_id`, `create_time`, `update_time`
+    </sql>
+
+    <sql id="productColumns">
+        `id`, `name`, `image`, `price`, `description`, `is_down`, `total`, `sell`,`category_id`, `create_time`, `update_time`
+    </sql>
+
+
+    <insert id="saveByProducts">
+        INSERT INTO hot
+        (`product_id`, `sell`, `create_time`, `update_time`)
+        VALUES
+        <foreach collection="products" separator="," item="product">
+            (#{product.id}, #{product.sell}, now(), now())
+        </foreach>
+    </insert>
+
+    <select id="findPageByIsDown" resultMap="productMap">
+        SELECT
+        <include refid="productColumns"/>
+        FROM hot AS h
+        LEFT JOIN product AS p
+        ON h.`product_id` = p.`id`
+        WHERE p.`is_down` = #{isDown}
+        ORDER BY `sell` DESC, `update_time` DESC
+    </select>
+
+</mapper>

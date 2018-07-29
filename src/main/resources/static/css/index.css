@@ -1,0 +1,116 @@
+/************************ HEADER START ***************************/
+header {
+    height: 55px;
+    background-color: #222222;
+    opacity: 80%;
+}
+
+header .content {
+    margin: 0 auto;
+    width: 1000px;
+    text-align: center;
+    line-height: 40px;
+    padding-top: 5px;
+}
+
+header .content .title {
+    color: white;
+    float: left;
+    margin-left: 20px;
+}
+
+header .content a {
+    color: #ffffff;
+}
+
+header .content .input-group {
+    margin-top: 8px;
+    width: 295px;
+    float: left;
+    height: 30px;
+    margin-left: 125px;
+}
+
+header .content .input-group input {
+    border: white solid 1px;
+    text-align: left;
+}
+
+header .content .input-group button {
+    text-align: center;
+    height: 30px;
+    font-size: 15px;
+    line-height: 20px;
+    color: grey;
+    border: white solid 1px;
+    background-color: white;
+}
+
+header .content .input-group button:hover {
+    background-color: #ffffff;
+    opacity: 1%;
+}
+
+header .content .user {
+    float: right;
+    width: 200px;
+    margin-right: 50px;
+}
+
+header .content .user a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+header .content .user a:link {
+    color: #ffffff;
+}
+
+header .content .user a:hover {
+    color: #ffffff;
+}
+
+header .content .user a:active {
+    color: #ffffff;
+}
+
+header .content .user a:visited {
+    color: #ffffff;
+}
+
+/************************ HEADER END ***************************/
+.category {
+    border-top: white solid 5px;
+    margin: 0 auto;
+    width: 1000px;
+}
+
+.category .cat-group {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 300px;
+    height: 38px;
+    line-height: 30px;
+    text-align: left;
+    color: white;
+    border: white solid 1px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.category .cat-group span {
+    margin-left: 30px;
+}
+
+.category .cat-group select {
+    width: 150px;
+    margin-top: 5px;
+    border: none;
+    color: #ffffff;
+    height: 25px;
+}
+
+.category .cat-group select:focus {
+    background-color: white;
+}

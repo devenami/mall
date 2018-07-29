@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.zhoutt.mall.dao.ICategoryMapper">
+    <resultMap id="categoryMap" type="edu.zhoutt.mall.pojo.Category">
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="name" property="name"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <sql id="categoryColumns">
+        `id`, `parent_id`, `name`, `create_time`, `update_time`
+    </sql>
+
+</mapper>
