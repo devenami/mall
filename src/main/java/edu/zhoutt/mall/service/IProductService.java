@@ -4,6 +4,7 @@ import edu.zhoutt.mall.common.IsDown;
 import edu.zhoutt.mall.configuration.page.Page;
 import edu.zhoutt.mall.configuration.page.Pageable;
 import edu.zhoutt.mall.pojo.Product;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -20,4 +21,6 @@ public interface IProductService {
     Product getSingle(Long id);
 
     Page<Product> getPageByCategory(Long categoryId, Pageable pageable);
+
+    String fileUpload(MultipartFile file);
 }

@@ -9,3 +9,5 @@ logging:
     edu.zhoutt.mall: debug
 mybatis:
   mapper-locations: classpath*:mapper/**/*.xml
+mall:
+  file-path-prefix: C:\\upload-file\

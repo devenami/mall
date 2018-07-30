@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ajax异步文件上传</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+        function createXHR() {
+            let xhr = null;
+            if (window.XMLHttpRequest)  //要是支持XMLHttpRequest的则采用XMLHttpRequest生成对象
+                xhr = new XMLHttpRequest();
+            else if (window.ActiveXobject)//要是支持win的ActiveXobject则采用ActiveXobject生成对象。
+                xhr = new ActiveXobject('Microsoft.XMLHTTP');
+            return xhr;
+        }
+
+        function ajax_upload() {
+            let xhr = createXHR();
+            let formData = new FormData();
+            let file = document.getElementsByTagName('input')[0].files[0];//获取文件列表中的第一个文件，html5中支持多个文件上传
+            let info = '文件名:' + file.name + ' 文件类型:' + file.type + ' 文件大小:' + file.size;//获取文件的信息
+            let showInfo = document.getElementById('showinfo');
+            showInfo.innerHTML = info;
+            formData.append('pic', file);//加载图片文件
+            xhr.open('POST', '/api/product/file/upload', true);
+            xhr.send(formData);
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    showInfo.innerHTML = showInfo.innerHTML + '<br />' + this.responseText;//将后台提示信息放到指定div中显示
+                }
+
+            }
+        }
+    </script>
+</head>
+<body>
+<input type='file' name='pic'/>
+<input type='button' value='提交' onclick='ajax_upload();'/>
+<div id='showinfo'></div>
+</body>
+</html>

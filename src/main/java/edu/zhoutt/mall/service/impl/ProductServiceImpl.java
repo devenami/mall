@@ -1,6 +1,7 @@
 package edu.zhoutt.mall.service.impl;
 
 import edu.zhoutt.mall.common.IsDown;
+import edu.zhoutt.mall.common.Properties;
 import edu.zhoutt.mall.configuration.page.Page;
 import edu.zhoutt.mall.configuration.page.Pageable;
 import edu.zhoutt.mall.dao.ICategoryMapper;
@@ -8,11 +9,13 @@ import edu.zhoutt.mall.dao.IProductMapper;
 import edu.zhoutt.mall.pojo.Category;
 import edu.zhoutt.mall.pojo.Product;
 import edu.zhoutt.mall.service.IProductService;
+import edu.zhoutt.mall.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -27,6 +30,9 @@ public class ProductServiceImpl implements IProductService {
 
     @Autowired
     private ICategoryMapper categoryMapper;
+
+    @Autowired
+    private Properties properties;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -121,4 +127,15 @@ public class ProductServiceImpl implements IProductService {
         }
     }
 
+    @Override
+    public String fileUpload(MultipartFile file) {
+
+        String filePathPrefix = properties.getFilePathPrefix();
+        filePathPrefix = FileUtil.convertPathToUnix(filePathPrefix);
+
+        String destPath = filePathPrefix + "product";
+        String absPath = FileUtil.transferTo(file, destPath);
+
+        return FileUtil.relationPath(absPath, filePathPrefix);
+    }
 }

@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 
@@ -130,5 +131,11 @@ public class ProductController {
         return HttpResult.page(productService.getPageByCategory(categoryId, pageable));
     }
 
+
+    @PostMapping("/file/upload")
+    @ApiOperation("产品文件上传")
+    public HttpResult fileUpload(MultipartFile file) {
+        return HttpResult.success(productService.fileUpload(file));
+    }
 
 }
