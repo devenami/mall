@@ -52,6 +52,7 @@ public class MallApplication extends WebMvcConfigurationSupport {
         excludes.add("/api/category/get");
         excludes.add("/api/product/get/single/*");
         excludes.add("/api/product/get/category/**");
+        excludes.add("/api/hot/get/**");
 
         return excludes.toArray(new String[0]);
     }

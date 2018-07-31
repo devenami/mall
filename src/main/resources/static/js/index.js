@@ -1,8 +1,10 @@
 // 自动加载的项目
 $(function () {
-
+    // 填充分类
     fullCategory();
 
+    // 填充热卖
+    loadHotProduct();
 });
 
 // 启动时填充所有分类
@@ -92,4 +94,26 @@ function selectCategory(select) {
 // TODO 加载用户选择的商品
 function loadProducts(categoryId) {
 
+}
+
+function loadHotProduct() {
+    const url = "/api/hot/get/page/0/5";
+    const hotList = $('#hot-list');
+    hotList.empty();
+    let content = '';
+    $.get(url, function (result) {
+        const products = result.data;
+        for (let i = 0; i < products.length; i++) {
+            let product = products[i];
+            content += '<div class="item" onclick="product_detail(' + product.id + ')">' +
+                '  <img class="img-thumbnail" src="' + product.image + '">' +
+                '  <span>' + product.name + '</span>' +
+                '</div>'
+        }
+        hotList.html(content);
+    });
+}
+
+function product_detail(id) {
+    console.log(id);
 }

@@ -38,12 +38,13 @@
 
     <select id="findPageByIsDown" resultMap="productMap">
         SELECT
-        <include refid="productColumns"/>
+        p.`id`, p.`name`, p.`image`, p.`price`, p.`description`, p.`is_down`, p.`total`, p.`sell`,
+        p.`category_id`, p.`create_time`, p.`update_time`
         FROM hot AS h
         LEFT JOIN product AS p
         ON h.`product_id` = p.`id`
         WHERE p.`is_down` = #{isDown}
-        ORDER BY `sell` DESC, `update_time` DESC
+        ORDER BY h.`sell` DESC, h.`update_time` DESC
     </select>
 
 </mapper>

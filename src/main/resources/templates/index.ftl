@@ -58,7 +58,50 @@
 </section>
 
 <section class="hot">
-
+    <hr/>
+    <span class="hint">热卖：</span>
+    <div class="products" id="hot-list">
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称名称名称名称名称名称名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+        <div class="item">
+            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
+            <span>名称</span>
+        </div>
+    </div>
 </section>
 
 <footer>

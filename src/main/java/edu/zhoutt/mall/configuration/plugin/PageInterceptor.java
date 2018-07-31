@@ -24,8 +24,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Component
 @Intercepts({@Signature(type = Executor.class, method = "query",
@@ -137,20 +135,27 @@ public class PageInterceptor implements Interceptor {
      */
     private long queryTotalElements(String sql, MappedStatement mappedStatement, BoundSql boundSql) throws SQLException {
 
-        String countSql = new StringBuilder("select count(1) from ( ").append(removeOrders(sql)).append(" ) as countTable_1232222 ").toString();
+        String countSql = new StringBuilder("select count(1) from ( ").append(sql).append(" ) as countTable_1232222 ").toString();
 
         if (log.isDebugEnabled()) {
             log.debug(countSql);
         }
 
-        try (Connection connection = mappedStatement.getConfiguration().getEnvironment().getDataSource().getConnection();
-             PreparedStatement countStmt = connection.prepareStatement(countSql);
-             ResultSet rs = countStmt.executeQuery()) {
+        Connection connection = null;
+        PreparedStatement countStmt = null;
+        ResultSet rs = null;
+        try {
+
+            connection = mappedStatement.getConfiguration().getEnvironment().getDataSource().getConnection();
+
+            countStmt = connection.prepareStatement(countSql);
 
             BoundSql countBoundSql = new BoundSql(mappedStatement.getConfiguration(), countSql,
                     boundSql.getParameterMappings(), boundSql.getParameterObject());
 
             setParameters(countStmt, mappedStatement, countBoundSql, boundSql.getParameterObject());
+
+            rs = countStmt.executeQuery();
 
             long totalElements = 0;
 
@@ -162,6 +167,16 @@ public class PageInterceptor implements Interceptor {
         } catch (SQLException e) {
             log.error("查询总记录数失败", e);
             throw e;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (countStmt != null) {
+                countStmt.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
         }
 
     }
@@ -210,18 +225,5 @@ public class PageInterceptor implements Interceptor {
     public void setProperties(Properties properties) {
 
     }
-
-
-    protected String removeOrders(String sql) {
-        Pattern p = Pattern.compile("[order|ORDER]\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE);
-        Matcher m = p.matcher(sql);
-        StringBuffer sb = new StringBuffer();
-        while (m.find()) {
-            m.appendReplacement(sb, "");
-        }
-        m.appendTail(sb);
-        return sb.toString();
-    }
-
 
 }
