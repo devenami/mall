@@ -19,6 +19,7 @@
 * Swagger 注解
 * Mybatis 注解
 * Mybatis 拦截器实现分页
+* Spring Task 定时任务
 
-## 后续
-> 鬼知道后续还要加什么，业余时间慢慢做...
+## BUG FIX
+* 修复分页拦截器中，由于try-with-resource结构导致的 SQL 查询时间早于参数赋值时间而产生的BUG。
