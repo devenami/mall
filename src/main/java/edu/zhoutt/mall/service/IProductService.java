@@ -23,4 +23,5 @@ public interface IProductService {
     Page<Product> getPageByCategory(Long categoryId, Pageable pageable);
 
     String fileUpload(MultipartFile file);
+
 }

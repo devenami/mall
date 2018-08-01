@@ -52,6 +52,7 @@ public class MallApplication extends WebMvcConfigurationSupport {
         excludes.add("/api/category/get");
         excludes.add("/api/product/get/single/*");
         excludes.add("/api/product/get/category/**");
+        excludes.add("/api/product/file/download");
         excludes.add("/api/hot/get/**");
 
         return excludes.toArray(new String[0]);
@@ -59,6 +60,7 @@ public class MallApplication extends WebMvcConfigurationSupport {
 
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/META-INF/resources/")
                 .addResourceLocations("classpath:/resources/")

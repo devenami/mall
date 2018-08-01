@@ -17,6 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -138,4 +140,5 @@ public class ProductServiceImpl implements IProductService {
 
         return FileUtil.relationPath(absPath, filePathPrefix);
     }
+
 }
