@@ -20,6 +20,8 @@
 * Mybatis 注解
 * Mybatis 拦截器实现分页
 * Spring Task 定时任务
+* FTP 文件传输
+* Nginx 静态资源代理
 
 ## BUG FIX
 * 修复分页拦截器中，由于try-with-resource结构导致的 SQL 查询时间早于参数赋值时间而产生的BUG。

@@ -1,19 +1,22 @@
 package edu.zhoutt.mall.common;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
-@Component
+@Data
 @ConfigurationProperties("mall")
 public class Properties {
 
-    private String filePathPrefix;
+    @NestedConfigurationProperty
+    private FTPProperties ftp = new FTPProperties();
 
-    public String getFilePathPrefix() {
-        return filePathPrefix;
+    @Data
+    public class FTPProperties {
+        private String host;
+        private Integer port = 21;
+        private String username;
+        private String password;
     }
 
-    public void setFilePathPrefix(String filePathPrefix) {
-        this.filePathPrefix = filePathPrefix;
-    }
 }

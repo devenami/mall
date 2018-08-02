@@ -1,9 +1,13 @@
 package edu.zhoutt.mall;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import edu.zhoutt.mall.common.Properties;
 import edu.zhoutt.mall.configuration.LoginInterceptor;
+import edu.zhoutt.mall.helper.FTPHelper;
+import edu.zhoutt.mall.helper.FTPHelperImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
@@ -25,7 +29,14 @@ import java.util.*;
 @EnableSwagger2
 @EnableScheduling
 @SpringBootApplication
+@EnableConfigurationProperties(Properties.class)
 public class MallApplication extends WebMvcConfigurationSupport {
+
+    private Properties properties;
+
+    public MallApplication(Properties properties) {
+        this.properties = properties;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(MallApplication.class, args);
@@ -52,7 +63,6 @@ public class MallApplication extends WebMvcConfigurationSupport {
         excludes.add("/api/category/get");
         excludes.add("/api/product/get/single/*");
         excludes.add("/api/product/get/category/**");
-        excludes.add("/api/product/file/download");
         excludes.add("/api/hot/get/**");
 
         return excludes.toArray(new String[0]);
@@ -90,6 +100,12 @@ public class MallApplication extends WebMvcConfigurationSupport {
                 .build()
                 .apiInfo(new ApiInfo("RestApi", "测试系统", "1.0", "127.0.0.1",
                         new Contact("", "", ""), "", "", Collections.emptyList()));
+    }
+
+
+    @Bean
+    public FTPHelper ftpHelper() {
+        return new FTPHelperImpl(properties);
     }
 
 }

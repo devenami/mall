@@ -10,4 +10,8 @@ logging:
 mybatis:
   mapper-locations: classpath*:mapper/**/*.xml
 mall:
-  file-path-prefix: C:\software\workspace\mall\src\main\resources\static\
+  ftp:
+    host: 127.0.0.1
+    port: 21
+    username: admin
+    password: admin

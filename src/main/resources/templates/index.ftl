@@ -40,19 +40,16 @@
     <div class="bg-primary cat-group">
         <span>一级分类：</span>
         <select id="cat-0" class="bg-primary" onchange="selectCategory(this)">
-            <option>请选择</option>
         </select>
     </div>
     <div class="bg-primary cat-group">
         <span>二级分类：</span>
         <select id="cat-1" class="bg-primary" onchange="selectCategory(this)">
-            <option>请选择</option>
         </select>
     </div>
     <div class="bg-primary cat-group">
         <span>三级分类：</span>
         <select id="cat-2" class="bg-primary" onchange="selectCategory(this)">
-            <option>请选择</option>
         </select>
     </div>
 </section>
@@ -61,46 +58,7 @@
     <hr/>
     <span class="hint">热卖：</span>
     <div class="products" id="hot-list">
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称名称名称名称名称名称名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
-        <div class="item">
-            <img class="img-thumbnail" src="/imgs/E98ECEAC9E68BE31BB623419FD0C9E.png">
-            <span>名称</span>
-        </div>
+
     </div>
 </section>
 

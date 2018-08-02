@@ -20,7 +20,8 @@ public interface IHotMapper {
 
     Page<Product> findPageByIsDown(@Param("isDown") Integer isDown, @Param("pageable") Pageable pageable);
 
-    @Select("SELECT id, product_id, sell, update_time, create_time FROM hot WHERE product_id = #{productId}")
+    @Select("SELECT id, product_id AS productId, sell, update_time AS updateTime, create_time AS createTime " +
+            "FROM hot WHERE product_id = #{productId}")
     Hot findByProductId(Long productId);
 
     @Update("UPDATE hot SET product_id = #{hot.productId}, sell = #{hot.sell}, update_time = #{hot.updateTime} " +

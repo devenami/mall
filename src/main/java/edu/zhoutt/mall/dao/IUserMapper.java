@@ -11,10 +11,11 @@ public interface IUserMapper {
             "(#{user.username}, #{user.password}, #{user.role}, #{user.createTime}, #{user.updateTime})"})
     void save(@Param("user") User user);
 
-    @Select("SELECT id, username, role FROM user where id = #{id}")
+    @Select("SELECT id, username, role, create_time AS createTime, update_time AS updateTime FROM user where id = #{id}")
     User findById(@Param("id") Long id);
 
-    @Select("SELECT id, username, password, role, create_time, update_time FROM user where username = #{username} and password = #{password}")
+    @Select("SELECT id, username, password, role, create_time AS createTime, update_time AS updateTime " +
+            "FROM user where username = #{username} and password = #{password}")
     User findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
 
     @Select("SELECT COUNT(id) AS count FROM user WHERE username = #{username} AND role = #{role}")

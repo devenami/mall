@@ -1,15 +1,16 @@
 package edu.zhoutt.mall.service.impl;
 
 import edu.zhoutt.mall.common.IsDown;
-import edu.zhoutt.mall.common.Properties;
 import edu.zhoutt.mall.configuration.page.Page;
 import edu.zhoutt.mall.configuration.page.Pageable;
 import edu.zhoutt.mall.dao.ICategoryMapper;
 import edu.zhoutt.mall.dao.IProductMapper;
+import edu.zhoutt.mall.helper.FTPHelper;
 import edu.zhoutt.mall.pojo.Category;
 import edu.zhoutt.mall.pojo.Product;
 import edu.zhoutt.mall.service.IProductService;
 import edu.zhoutt.mall.util.FileUtil;
+import edu.zhoutt.mall.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -17,8 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +35,7 @@ public class ProductServiceImpl implements IProductService {
     private ICategoryMapper categoryMapper;
 
     @Autowired
-    private Properties properties;
+    private FTPHelper ftpHelper;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -132,13 +133,28 @@ public class ProductServiceImpl implements IProductService {
     @Override
     public String fileUpload(MultipartFile file) {
 
-        String filePathPrefix = properties.getFilePathPrefix();
-        filePathPrefix = FileUtil.convertPathToUnix(filePathPrefix);
+        String originalFilename = file.getOriginalFilename();
+        String suffix = originalFilename.substring(originalFilename.lastIndexOf("."));
+        String absPath = "/product/" + UUIDUtil.getUuid() + suffix;
 
-        String destPath = filePathPrefix + "product";
-        String absPath = FileUtil.transferTo(file, destPath);
+        InputStream in = null;
 
-        return FileUtil.relationPath(absPath, filePathPrefix);
+        try {
+            in = file.getInputStream();
+            ftpHelper.toFTPServer(absPath, in);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return absPath;
     }
 
 }

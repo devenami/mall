@@ -27,13 +27,13 @@ public class HotTask {
     /**
      * 每小时生成热卖商品
      */
-    @Scheduled(cron = "0 0 0/1 * * *")
+    @Scheduled(cron = "0 0/30 * * * *")
     @Transactional(propagation = Propagation.REQUIRED)
     public void generateHotProduct() {
 
         Date currTime = new Date();
 
-        Pageable pageable = Pageable.of(0, 10);
+        Pageable pageable = Pageable.of(0, 5);
         Page<Product> page = productMapper.findPageBySellDesc(pageable);
         List<Product> products = page.getData();
         for (Product product : products) {

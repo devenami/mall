@@ -16,8 +16,8 @@ public interface IProductMapper {
             "#{product.total}, #{product.sell}, #{product.categoryId}, #{product.createTime}, #{product.updateTime})")
     void save(@Param("product") Product product);
 
-    @Select("SELECT id, name, image, price, description, is_down, total, sell, category_id, create_time, update_time " +
-            "FROM product WHERE id = #{id}")
+    @Select("SELECT id, name, image, price, description, is_down AS isDown, total, sell, category_id as CategoryId," +
+            " create_time AS createTime, update_time AS updateTime FROM product WHERE id = #{id}")
     Product findById(Long id);
 
     @Update("UPDATE product SET name = #{product.name}, image = #{product.image}, price = #{product.price}, " +

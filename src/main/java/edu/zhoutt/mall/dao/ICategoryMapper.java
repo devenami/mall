@@ -13,7 +13,8 @@ public interface ICategoryMapper {
             "VALUES (#{category.parentId}, #{category.name}, #{category.createTime}, #{category.updateTime})")
     void save(@Param("category") Category category);
 
-    @Select("SELECT id, parent_id, name, create_time, update_time FROM category WHERE id = #{id}")
+    @Select("SELECT id, parent_id AS productId, name, create_time AS createTime, update_time AS updateTime " +
+            "FROM category WHERE id = #{id}")
     Category findById(Long id);
 
     @Update("UPDATE category SET parent_id = #{category.parentId}, name = #{category.name}, update_time = #{category.updateTime} " +
@@ -23,7 +24,8 @@ public interface ICategoryMapper {
     @Delete("DELETE FROM category WHERE id = #{id}")
     long deleteById(Long id);
 
-    @Select("SELECT id, parent_id, name, create_time, update_time FROM category WHERE parent_id = #{parentId}")
+    @Select("SELECT id, parent_id AS productId, name, create_time AS createTime, update_time AS updateTime " +
+            "FROM category WHERE parent_id = #{parentId}")
     List<Category> findByParentId(Long parentId);
 
     @Select("SELECT COUNT(id) FROM category WHERE parent_id = #{parentId} AND name = #{name}")
