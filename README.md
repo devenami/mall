@@ -11,6 +11,10 @@
 ## 数据库
 * mysql
 
+## 软件
+* Nginx
+* Xlight FTP
+
 ## 做了什么？
 * SpringMvc 统一数据返回格式
 * SpringMvc 全局异常处理
