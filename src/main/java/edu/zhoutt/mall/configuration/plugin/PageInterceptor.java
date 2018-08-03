@@ -2,6 +2,7 @@ package edu.zhoutt.mall.configuration.plugin;
 
 import edu.zhoutt.mall.configuration.page.Page;
 import edu.zhoutt.mall.configuration.page.Pageable;
+import edu.zhoutt.mall.util.ClassUtil;
 import org.apache.ibatis.binding.MapperMethod.ParamMap;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
@@ -150,8 +151,16 @@ public class PageInterceptor implements Interceptor {
 
             countStmt = connection.prepareStatement(countSql);
 
+            NewBoundSql newBoundSql = ClassUtil.copy(NewBoundSql.class, boundSql);
+
             BoundSql countBoundSql = new BoundSql(mappedStatement.getConfiguration(), countSql,
                     boundSql.getParameterMappings(), boundSql.getParameterObject());
+
+            Map<String, Object> additionalParameters = newBoundSql.getAdditionalParameters();
+
+            for (Map.Entry<String, Object> entry : additionalParameters.entrySet()) {
+                countBoundSql.setAdditionalParameter(entry.getKey(), entry.getValue());
+            }
 
             setParameters(countStmt, mappedStatement, countBoundSql, boundSql.getParameterObject());
 

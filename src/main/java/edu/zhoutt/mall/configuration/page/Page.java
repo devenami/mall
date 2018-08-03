@@ -14,20 +14,20 @@ public class Page<T> extends ArrayList<T> {
     // 分页数据
     private List<T> data;
     // 当前页码， 从 0 开始
-    private int pageNo;
+    private Integer pageNo;
     // 当前查询的数量
-    private int pageSize;
+    private Integer pageSize;
     // 所有的记录数目
-    private long totalElements;
+    private Long totalElements;
     // 记录的总页数
-    private long totalPages;
+    private Long totalPages;
 
     public Page() {
 
     }
 
     // 私有化构造器
-    public Page(List<T> data, int pageNo, int pageSize, long totalElements, long totalPages) {
+    public Page(List<T> data, Integer pageNo, Integer pageSize, Long totalElements, Long totalPages) {
         this.data = data;
         this.pageNo = pageNo;
         this.pageSize = pageSize;
@@ -39,19 +39,19 @@ public class Page<T> extends ArrayList<T> {
         return data;
     }
 
-    public int getPageNo() {
+    public Integer getPageNo() {
         return pageNo;
     }
 
-    public int getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public long getTotalElements() {
+    public Long getTotalElements() {
         return totalElements;
     }
 
-    public long getTotalPages() {
+    public Long getTotalPages() {
         return totalPages;
     }
 }

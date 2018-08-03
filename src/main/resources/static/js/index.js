@@ -5,6 +5,7 @@ $(function () {
 
     // 填充热卖
     loadHotProduct();
+
 });
 
 // 启动时填充所有分类
@@ -14,6 +15,24 @@ function fullCategory() {
     $.get(url, function (result) {
         const data = result.data;
         setFirstCategory(data);
+
+        let cid;
+        // 加载产品
+        let first = data[0];
+        if (first) {
+            cid = first.id;
+            let second = first.subCategories[0];
+            if (second) {
+                cid = second.id;
+                let third = second.subCategories[0];
+                if (third) {
+                    cid = third.id;
+                }
+            }
+        }
+
+        loadProducts(cid, 0);
+
     });
 }
 
@@ -86,19 +105,25 @@ function selectCategory(select) {
             if (id === 'cat-1') {
                 setThirdCategory(categories)
             }
-
-            loadProducts(categoryId);
         });
 }
 
-// TODO 加载用户选择的商品
-function loadProducts(categoryId) {
+let globalCategoryId;
 
+function loadProducts(categoryId, pageNo) {
+    globalCategoryId = categoryId;
+
+    let url = '/api/product/get/category/' + categoryId + '/' + pageNo + '/20';
+    loadFromServer(url, 'product-list');
 }
 
 function loadHotProduct() {
     const url = "/api/hot/get/page/0/5";
-    const hotList = $('#hot-list');
+    loadFromServer(url, 'hot-list');
+}
+
+function loadFromServer(url, htmlId) {
+    const hotList = $('#' + htmlId);
     hotList.empty();
     let content = '';
     $.get(url, function (result) {
@@ -111,9 +136,37 @@ function loadHotProduct() {
                 '</div>'
         }
         hotList.html(content);
+
+        if (result.pageSize) {
+            const pageNo = $('#page-no');
+            const pageTotal = $('#page-total');
+
+            pageNo.empty();
+            pageTotal.empty();
+            pageNo.text(result.pageNo + 1);
+            pageTotal.text(result.totalPages);
+        }
+
     });
 }
 
 function product_detail(id) {
     console.log(id);
+}
+
+function jumpToPage(flag) {
+    let pageNo = $('#page-no').text();
+    if (flag) {
+        // 上一页
+        if (pageNo > 1) {
+            loadProducts(globalCategoryId, pageNo - 2);
+        }
+    } else {
+        // 下一页
+        let totalPage = $('#page-total').text();
+        if (pageNo < totalPage) {
+            loadProducts(globalCategoryId, pageNo);
+        }
+    }
+
 }

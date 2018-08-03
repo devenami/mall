@@ -1,5 +1,7 @@
 package edu.zhoutt.mall.configuration.page;
 
+import org.springframework.util.Assert;
+
 /**
  * 用于查询分页数据的对象
  *
@@ -7,24 +9,28 @@ package edu.zhoutt.mall.configuration.page;
  */
 public class Pageable {
 
-    private int pageNo;
+    private Integer pageNo;
 
-    private int pageSize;
+    private Integer pageSize;
 
-    private Pageable(int pageNo, int pageSize) {
+    private Pageable(Integer pageNo, Integer pageSize) {
+
+        Assert.notNull(pageNo, "pageNo 不能为空");
+        Assert.notNull(pageSize, "pageSize 不能为空");
+
         this.pageNo = pageNo;
         this.pageSize = pageSize;
     }
 
-    public static Pageable of(int pageNo, int pageSize) {
+    public static Pageable of(Integer pageNo, Integer pageSize) {
         return new Pageable(pageNo, pageSize);
     }
 
-    public int getPageNo() {
+    public Integer getPageNo() {
         return pageNo;
     }
 
-    public int getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 }

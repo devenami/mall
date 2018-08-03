@@ -1,8 +1,11 @@
+.bg-222 {
+    background-color: #222222;
+    opacity: 80%;
+}
+
 /************************ HEADER START ***************************/
 header {
     height: 55px;
-    background-color: #222222;
-    opacity: 80%;
 }
 
 header .content {
@@ -98,7 +101,7 @@ section {
     text-align: left;
     color: white;
     border: white solid 1px;
-    border-radius: 5px;
+    border-radius: 10px;
     display: inline-block;
 }
 
@@ -118,10 +121,17 @@ section {
     background-color: white;
 }
 
+
 /**-------------------  hot  -----------------*/
+
 .hot .hint {
     font-weight: bold;
     margin-left: 10px;
+    display: block;
+}
+
+.hot .products {
+    display: inline-block;
 }
 
 .hot .products .item {
@@ -131,6 +141,7 @@ section {
 }
 
 .hot .products .item img {
+    height: 180px;
     width: 180px;
     margin: 10px 10px 10px 10px;
 }
@@ -146,4 +157,70 @@ section {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/**-------------------  product  -----------------*/
+
+.product {
+    display: block;
+    clear: both;
+}
+
+.product .hint {
+    display: block;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.product .products {
+    display: inline-block;
+}
+
+.product .products .item {
+    width: 200px;
+    height: 220px;
+    float: left;
+}
+
+.product .products .item img {
+    width: 180px;
+    height: 180px;
+    margin: 10px 10px 10px 10px;
+}
+
+.product .products .item span {
+    width: 180px;
+    height: 20px;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.product .page {
+    /*float: right;*/
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+.product .page button {
+    color: #ffffff;
+    border-radius: 10px;
+    border: white solid 1px;
+}
+
+/**-------------------  footer  -----------------*/
+footer {
+    height: 80px;
+    margin-top: 40px;
+    text-align: center;
+    line-height: 80px;
+    color: white;
 }
