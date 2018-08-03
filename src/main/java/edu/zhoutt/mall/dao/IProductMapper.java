@@ -29,7 +29,9 @@ public interface IProductMapper {
     @Delete("DELETE FROM product WHERE id = #{id}")
     long deleteById(Long id);
 
-    Page<Product> findPageByCategory(@Param("categoryIds") List<Long> categoryIds, @Param("pageable") Pageable pageable);
+    Page<Product> findPageByCategoryAndKeyword(@Param("categoryIds") List<Long> categoryIds,
+                                               @Param("keyword") String keyword,
+                                               @Param("pageable") Pageable pageable);
 
     Page<Product> findPageBySellDesc(Pageable pageable);
 }

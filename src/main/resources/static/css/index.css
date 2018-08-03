@@ -118,9 +118,14 @@ section {
 }
 
 .category .cat-group select:focus {
-    background-color: white;
+    background-color: #222222;
+    color: white;
 }
 
+.category .cat-group select option {
+    background-color: #222222;
+    color: white;
+}
 
 /**-------------------  hot  -----------------*/
 

@@ -17,9 +17,9 @@
     <div class="content">
         <span class="title">Welcome Visiting My Store</span>
         <div class="input-group">
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" id="search_keyword"/>
             <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="button">搜索</button>
+                <button class="btn btn-outline-primary" type="button" onclick="searchProduct()">搜索</button>
             </div>
         </div>
 

@@ -10,6 +10,7 @@ import edu.zhoutt.mall.pojo.Category;
 import edu.zhoutt.mall.pojo.Product;
 import edu.zhoutt.mall.service.IProductService;
 import edu.zhoutt.mall.util.FileUtil;
+import edu.zhoutt.mall.util.StringUtil;
 import edu.zhoutt.mall.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,16 +105,30 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Page<Product> getPageByCategory(Long categoryId, Pageable pageable) {
+    public Page<Product> getProductListByPage(Long categoryId, String keyword, Pageable pageable) {
 
-        Category category = categoryMapper.findById(categoryId);
-        Assert.notNull(category, "分类信息不正确");
+        List<Long> categoryIds = null;
 
-        List<Long> categoryIds = new ArrayList<>();
-        categoryIds.add(categoryId);
-        findSubCategoryId(categoryIds, categoryId);
+        if (categoryId != null) {
 
-        return productMapper.findPageByCategory(categoryIds, pageable);
+            categoryIds = new ArrayList<>();
+
+            Category category = categoryMapper.findById(categoryId);
+            Assert.notNull(category, "分类信息不正确");
+
+            categoryIds.add(categoryId);
+            findSubCategoryId(categoryIds, categoryId);
+        }
+
+        if (StringUtil.hasText(keyword)) {
+            keyword = "%" + keyword + "%";
+        }
+
+        if (categoryId == null && !StringUtil.hasText(keyword)) {
+            throw new IllegalArgumentException("参数异常，直接返回");
+        }
+
+        return productMapper.findPageByCategoryAndKeyword(categoryIds, keyword, pageable);
     }
 
 

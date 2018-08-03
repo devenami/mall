@@ -14,7 +14,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
 
 @RestController
@@ -112,24 +111,25 @@ public class ProductController {
         return HttpResult.success(productService.getSingle(id));
     }
 
-    @GetMapping("/get/category/{categoryId}/{pageNo}/{pageSize}")
-    @ApiOperation("根据分类id分页查询商品")
+    @GetMapping("/get/category/keyword")
+    @ApiOperation("根据分类id或关键词分页查询商品")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "categoryId", value = "分类id", required = true),
+            @ApiImplicitParam(name = "categoryId", value = "分类id"),
+            @ApiImplicitParam(name = "keyword", value = "关键词"),
             @ApiImplicitParam(name = "pageNo", value = "页码, 从0开始", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页显示的数量", required = true)
     })
-    public HttpResult getPageByCategory(@PathVariable("categoryId") Long categoryId,
-                                        @PathVariable("pageNo") Integer pageNo,
-                                        @PathVariable("pageSize") Integer pageSize) {
+    public HttpResult getProductListByPage(@RequestParam(value = "category_id", required = false) Long categoryId,
+                                           @RequestParam(value = "keyword", required = false) String keyword,
+                                           @RequestParam("page_no") Integer pageNo,
+                                           @RequestParam("page_size") Integer pageSize) {
 
-        Assert.notNull(categoryId, "分类id不能为空");
         Assert.notNull(pageNo, "当前页码不能为空");
         Assert.notNull(pageSize, "每页显示的数量不能为空");
 
         Pageable pageable = Pageable.of(pageNo, pageSize);
 
-        return HttpResult.page(productService.getPageByCategory(categoryId, pageable));
+        return HttpResult.page(productService.getProductListByPage(categoryId, keyword, pageable));
     }
 
 
@@ -138,5 +138,6 @@ public class ProductController {
     public HttpResult fileUpload(MultipartFile file) {
         return HttpResult.success(productService.fileUpload(file));
     }
+
 
 }

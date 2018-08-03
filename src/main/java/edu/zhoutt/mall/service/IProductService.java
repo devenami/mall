@@ -20,7 +20,7 @@ public interface IProductService {
 
     Product getSingle(Long id);
 
-    Page<Product> getPageByCategory(Long categoryId, Pageable pageable);
+    Page<Product> getProductListByPage(Long categoryId, String keyword, Pageable pageable);
 
     String fileUpload(MultipartFile file);
 

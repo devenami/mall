@@ -31,7 +31,7 @@ function fullCategory() {
             }
         }
 
-        loadProducts(cid, 0);
+        loadProducts(cid, null, 0);
 
     });
 }
@@ -105,16 +105,36 @@ function selectCategory(select) {
             if (id === 'cat-1') {
                 setThirdCategory(categories)
             }
+
+            loadProducts(categoryId, null, 0);
+
         });
 }
 
+/**
+ * 控制当前查询产品列表时的方式
+ * 搜索 or 分类
+ */
 let globalCategoryId;
+let globalKeyword;
 
-function loadProducts(categoryId, pageNo) {
-    globalCategoryId = categoryId;
+function loadProducts(categoryId, keyword, pageNo) {
 
-    let url = '/api/product/get/category/' + categoryId + '/' + pageNo + '/20';
-    loadFromServer(url, 'product-list');
+    let url = '/api/product/get/category/keyword';
+
+    let param = {page_no: pageNo, page_size: 20, category_id: null, keyword: null};
+    if (categoryId) {
+        globalCategoryId = categoryId;
+        globalKeyword = null;
+        param.category_id = categoryId;
+    }
+    if (keyword) {
+        globalKeyword = keyword;
+        globalCategoryId = null;
+        param.keyword = keyword;
+    }
+
+    loadFromServer(url, 'product-list', param);
 }
 
 function loadHotProduct() {
@@ -122,11 +142,11 @@ function loadHotProduct() {
     loadFromServer(url, 'hot-list');
 }
 
-function loadFromServer(url, htmlId) {
+function loadFromServer(url, htmlId, param) {
     const hotList = $('#' + htmlId);
     hotList.empty();
     let content = '';
-    $.get(url, function (result) {
+    $.get(url, param, function (result) {
         const products = result.data;
         for (let i = 0; i < products.length; i++) {
             let product = products[i];
@@ -159,14 +179,30 @@ function jumpToPage(flag) {
     if (flag) {
         // 上一页
         if (pageNo > 1) {
-            loadProducts(globalCategoryId, pageNo - 2);
+            btnClickLoadProduct(pageNo - 2);
         }
     } else {
         // 下一页
         let totalPage = $('#page-total').text();
         if (pageNo < totalPage) {
-            loadProducts(globalCategoryId, pageNo);
+            btnClickLoadProduct(pageNo);
         }
+    }
+}
+
+function btnClickLoadProduct(pageNo) {
+    if (globalCategoryId) {
+        loadProducts(globalCategoryId, null, pageNo);
+    } else if (globalKeyword) {
+        loadProducts(null, globalKeyword, pageNo);
+    }
+}
+
+function searchProduct() {
+    let keyword = $('#search_keyword').val();
+
+    if (keyword) {
+        loadProducts(null, keyword, 0);
     }
 
 }

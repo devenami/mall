@@ -15,16 +15,21 @@
         `id`, `name`, `image`, `price`, `description`, `is_down`, `total`, `sell`,`category_id`, `create_time`, `update_time`
     </sql>
 
-    <select id="findPageByCategory" resultMap="productMap">
+    <select id="findPageByCategoryAndKeyword" resultMap="productMap">
         SELECT
         <include refid="productColumns"/>
         FROM product
-        <if test="categoryIds != null">
-            WHERE `category_id` IN
-            <foreach collection="categoryIds" open="(" separator="," close=")" item="categoryId">
-              #{categoryId}
-            </foreach>
-        </if>
+        <where>
+            <if test="categoryIds != null">
+                AND `category_id` IN
+                <foreach collection="categoryIds" open="(" separator="," close=")" item="categoryId">
+                    #{categoryId}
+                </foreach>
+            </if>
+            <if test="@edu.zhoutt.mall.util.StringUtil@hasText(keyword)">
+                AND `name` LIKE #{keyword}
+            </if>
+        </where>
     </select>
 
     <select id="findPageBySellDesc" resultMap="productMap">
