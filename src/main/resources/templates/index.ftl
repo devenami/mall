@@ -24,13 +24,13 @@
         </div>
 
         <div class="user">
-            <a href="/user/car.html">购物车</a>
-            <a href="/user/order.html">订单</a>
+            <a href="/user/car.html" target="_blank">购物车</a>
+            <a href="/user/order.html" target="_blank">订单</a>
         <#if Session.user??>
-            <a href="/user/user.html">${Session.user.username}</a>
+            <a href="/user/user.html" target="_blank">${Session.user.username}</a>
         <#else>
-            <a href="/user/register.html">注册</a>
-            <a href="/user/login.html">登录</a>
+            <a href="/user/register.html" target="_blank">注册</a>
+            <a href="/user/login.html" target="_blank">登录</a>
         </#if>
         </div>
     </div>

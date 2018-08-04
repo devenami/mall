@@ -1,4 +1,4 @@
-package edu.zhoutt.mall.controller.user;
+package edu.zhoutt.mall.controller;
 
 import edu.zhoutt.mall.base.HttpResult;
 import edu.zhoutt.mall.configuration.page.Pageable;

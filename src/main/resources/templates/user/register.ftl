@@ -68,12 +68,12 @@
 </html>
 <script>
 
-    var isCanUse = 0;
+    let isCanUse = 0;
 
     function checkUsername() {
-        var username = $('#id_username').val();
-        var url = '/api/user/check/' + username;
-        var error_msg = $('#id_msg');
+        let username = $('#id_username').val();
+        let url = '/api/user/check/' + username;
+        let error_msg = $('#id_msg');
         error_msg.text('');
         error_msg.css('display', 'none');
         $.get(url, function (data) {
@@ -92,9 +92,9 @@
             return;
         }
 
-        var username = $('#id_username').val();
-        var password = $('#id_password').val();
-        var id_msg = $('#id_msg');
+        let username = $('#id_username').val();
+        let password = $('#id_password').val();
+        let id_msg = $('#id_msg');
         id_msg.text('');
         id_msg.css('display', 'none');
         if (!username || !password) {
@@ -103,7 +103,7 @@
             return;
         }
 
-        var url = '/api/user/register';
+        let url = '/api/user/register';
         $.post(url, {
                     username: username,
                     password: password,

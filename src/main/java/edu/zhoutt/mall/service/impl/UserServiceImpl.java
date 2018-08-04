@@ -64,4 +64,46 @@ public class UserServiceImpl implements IUserService {
         }
         return user;
     }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Long updateUsername(HttpSession session, User user, String username, UserRole userRole) {
+
+        Long id = user.getId();
+
+        user = userMapper.findById(id);
+        Assert.notNull(user, "用户信息不存在");
+
+        Assert.isTrue(user.getRole() == userRole.getCode(), "用户角色信息验证失败");
+
+        int count = userMapper.countByUsernameAndRole(username, userRole.getCode());
+        Assert.isTrue(count == 0, "该用户名已存在");
+
+        user.setUsername(username);
+        user.setUpdateTime(new Date());
+
+        Long success = userMapper.update(user);
+        if (success == 1) {
+            user.setPassword(null);
+            session.setAttribute("user", user);
+        }
+
+        return success;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Long updatePassword(User user, String password, UserRole userRole) {
+
+        Long id = user.getId();
+
+        user = userMapper.findById(id);
+        Assert.notNull(user, "用户信息不存在");
+
+        Assert.isTrue(user.getRole() == userRole.getCode(), "用户角色信息验证失败");
+
+        user.setPassword(Md5Util.encode(password));
+
+        return userMapper.update(user);
+    }
 }

@@ -8,4 +8,16 @@
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
     </resultMap>
+
+    <update id="update" parameterType="edu.zhoutt.mall.pojo.User">
+        UPDATE `user`
+        SET
+            `username`    = #{user.username},
+            `password`    = #{user.password},
+            `role`        = #{user.role},
+            `update_time` = #{user.updateTime}
+        WHERE
+            `id` = #{user.id}
+    </update>
+
 </mapper>

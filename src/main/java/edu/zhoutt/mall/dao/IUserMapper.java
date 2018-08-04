@@ -11,7 +11,7 @@ public interface IUserMapper {
             "(#{user.username}, #{user.password}, #{user.role}, #{user.createTime}, #{user.updateTime})"})
     void save(@Param("user") User user);
 
-    @Select("SELECT id, username, role, create_time AS createTime, update_time AS updateTime FROM user where id = #{id}")
+    @Select("SELECT id, username, password, role, create_time AS createTime, update_time AS updateTime FROM user where id = #{id}")
     User findById(@Param("id") Long id);
 
     @Select("SELECT id, username, password, role, create_time AS createTime, update_time AS updateTime " +
@@ -20,4 +20,6 @@ public interface IUserMapper {
 
     @Select("SELECT COUNT(id) AS count FROM user WHERE username = #{username} AND role = #{role}")
     int countByUsernameAndRole(@Param("username") String username, @Param("role") int role);
+
+    Long update(@Param("user") User user);
 }
