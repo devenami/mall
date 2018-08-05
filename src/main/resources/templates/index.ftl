@@ -24,9 +24,9 @@
         </div>
 
         <div class="user">
+        <#if Session.user??>
             <a href="/user/car.html" target="_blank">购物车</a>
             <a href="/user/order.html" target="_blank">订单</a>
-        <#if Session.user??>
             <a href="/user/user.html" target="_blank">${Session.user.username}</a>
         <#else>
             <a href="/user/register.html" target="_blank">注册</a>

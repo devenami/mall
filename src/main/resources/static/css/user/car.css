@@ -8,29 +8,33 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.img-thumbnail {
-    width: 400px;
-    height: 400px;
-    margin: 20px 20px 20px 50px;
+.car-item-update {
+    display: none;
 }
 
-.operate {
-    margin-top: 80px;
+.car-item-update .input-group .input-group-prepend .input-group-text {
+    width: 110px;
+}
+
+.car-item-update .input-group select {
+    width: 1000px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+img {
+    width: 100px;
+    height: 100px;
 }
 
 .operate div {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-#order-number {
-    width: 40px;
-    border: none;
-    text-align: center;
-}
-
-.desc {
-    margin: 10px 50px;
+    margin-top: 10px;
 }
 
 .float-msg {

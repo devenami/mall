@@ -5,6 +5,7 @@ import edu.zhoutt.mall.dao.IProductMapper;
 import edu.zhoutt.mall.pojo.Car;
 import edu.zhoutt.mall.pojo.Product;
 import edu.zhoutt.mall.service.ICarService;
+import edu.zhoutt.mall.vo.CarVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -61,7 +62,7 @@ public class CarServiceImpl implements ICarService {
     }
 
     @Override
-    public List<Car> getList(Long userId) {
+    public List<CarVo> getList(Long userId) {
 
         return carMapper.findByUserId(userId);
     }

@@ -4,6 +4,7 @@ import edu.zhoutt.mall.base.HttpResult;
 import edu.zhoutt.mall.pojo.Car;
 import edu.zhoutt.mall.pojo.User;
 import edu.zhoutt.mall.service.ICarService;
+import edu.zhoutt.mall.vo.CarVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -67,7 +68,7 @@ public class CarController {
 
     @GetMapping("/get/list")
     @ApiOperation("查询所有购物车中的内容")
-    public HttpResult<List<Car>> getList(HttpSession session) {
+    public HttpResult<List<CarVo>> getList(HttpSession session) {
 
         User user = (User) session.getAttribute("user");
 

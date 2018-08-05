@@ -1,6 +1,7 @@
 package edu.zhoutt.mall.dao;
 
 import edu.zhoutt.mall.pojo.Car;
+import edu.zhoutt.mall.vo.CarVo;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -25,8 +26,5 @@ public interface ICarMapper {
             "WHERE `id` = #{car.id}")
     Long update(@Param("car") Car car);
 
-    @Select("SELECT `id`, `user_id` AS userId, `product_id` AS productId, `total`, " +
-            "`create_time` AS createTime, `update_time` AS updateTime FROM car " +
-            "WHERE `user_id` = #{userId}")
-    List<Car> findByUserId(Long userId);
+    List<CarVo> findByUserId(Long userId);
 }

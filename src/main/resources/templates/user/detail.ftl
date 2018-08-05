@@ -49,7 +49,7 @@
     产品描述：<br/>
 ${product.description}
 </div>
-<div class="float-msg" id="id-float-msg">asdsffgsdfaddsc</div>
+<div class="float-msg" id="id-float-msg"></div>
 
 </body>
 </html>

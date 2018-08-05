@@ -1,7 +1,13 @@
 package edu.zhoutt.mall.controller.router;
 
+import edu.zhoutt.mall.pojo.Address;
+import edu.zhoutt.mall.pojo.Car;
 import edu.zhoutt.mall.pojo.Product;
+import edu.zhoutt.mall.pojo.User;
+import edu.zhoutt.mall.service.IAddressService;
+import edu.zhoutt.mall.service.ICarService;
 import edu.zhoutt.mall.service.IProductService;
+import edu.zhoutt.mall.vo.CarVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -15,7 +21,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @Api(description = "用户路由")
@@ -23,6 +31,12 @@ public class UserRouter {
 
     @Autowired
     private IProductService productService;
+
+    @Autowired
+    private ICarService carService;
+
+    @Autowired
+    private IAddressService addressService;
 
     @GetMapping("/")
     public void root(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,7 +69,17 @@ public class UserRouter {
     }
 
     @GetMapping("/user/car.html")
-    public String user$car() {
+    public String user$car(HttpSession session, Model model) {
+
+        User user = (User) session.getAttribute("user");
+
+        List<CarVo> list = carService.getList(user.getId());
+
+        List<Address> addressList = addressService.getListByUserId(user.getId());
+
+        model.addAttribute("list", list);
+        model.addAttribute("address", addressList);
+
         return "user/car";
     }
 

@@ -1,6 +1,7 @@
 package edu.zhoutt.mall.service;
 
 import edu.zhoutt.mall.pojo.Car;
+import edu.zhoutt.mall.vo.CarVo;
 
 import java.util.List;
 
@@ -12,5 +13,5 @@ public interface ICarService {
 
     Long update(Long id, Integer total);
 
-    List<Car> getList(Long userId);
+    List<CarVo> getList(Long userId);
 }
