@@ -34,4 +34,7 @@ public interface IProductMapper {
                                                @Param("pageable") Pageable pageable);
 
     Page<Product> findPageBySellDesc(Pageable pageable);
+
+    @Select("SELECT COUNT(1) FROM product WHERE `id` = #{id}")
+    long countById(Long id);
 }

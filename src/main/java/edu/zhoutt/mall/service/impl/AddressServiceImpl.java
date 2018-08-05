@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class AddressService implements IAddressService {
+public class AddressServiceImpl implements IAddressService {
 
     @Autowired
     private IAddressMapper addressMapper;

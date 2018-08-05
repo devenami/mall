@@ -1,0 +1,51 @@
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.img-thumbnail {
+    width: 400px;
+    height: 400px;
+    margin: 20px 20px 20px 50px;
+}
+
+.operate {
+    margin-top: 80px;
+}
+
+.operate div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#order-number {
+    width: 40px;
+    border: none;
+    text-align: center;
+}
+
+.desc {
+    margin: 10px 50px;
+}
+
+.float-msg {
+    background-color: #000;
+    line-height: 50px;
+    text-align: center;
+    height: 50px;
+    width: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 20px;
+    border: solid black 1px;
+    border-radius: 10px;
+    display: none;
+}

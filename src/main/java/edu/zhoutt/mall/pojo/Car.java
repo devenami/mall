@@ -15,6 +15,10 @@ public class Car {
 
     private Long userId;
 
+    private Long productId;
+
+    private Integer total;
+
     private Date createTime;
 
     private Date updateTime;

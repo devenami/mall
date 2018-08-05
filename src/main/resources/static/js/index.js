@@ -171,7 +171,7 @@ function loadFromServer(url, htmlId, param) {
 }
 
 function product_detail(id) {
-    console.log(id);
+    location.href = '/user/detail.html?id=' + id;
 }
 
 function jumpToPage(flag) {

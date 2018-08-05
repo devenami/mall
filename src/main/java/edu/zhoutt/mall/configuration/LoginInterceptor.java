@@ -54,6 +54,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     private void resolveError(HttpServletResponse response) throws IOException {
+        response.setHeader("Content-Type", "application/json;charset=UTF-8");
         PrintWriter writer = response.getWriter();
         String json = JsonUtil.toJson(HttpResult.customer(4, "please login", null));
         writer.write(json);
