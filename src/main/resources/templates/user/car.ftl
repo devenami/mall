@@ -47,7 +47,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">数量：</span>
                     </div>
-                    <input type="number" class="form-control" value="${car.total}" onchange="changeTotal(this)"
+                    <input type="number" class="form-control" value="${car.total}" onchange="changeTotal(this, ${car.id})"
                            onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
                            onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'0')}else{this.value=this.value.replace(/\D/g,'')}"/>
                 </div>

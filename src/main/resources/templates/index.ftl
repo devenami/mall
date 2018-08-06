@@ -29,8 +29,8 @@
             <a href="/user/order.html" target="_blank">订单</a>
             <a href="/user/user.html" target="_blank">${Session.user.username}</a>
         <#else>
-            <a href="/user/register.html" target="_blank">注册</a>
-            <a href="/user/login.html" target="_blank">登录</a>
+            <a href="/user/register.html">注册</a>
+            <a href="/user/login.html">登录</a>
         </#if>
         </div>
     </div>

@@ -8,12 +8,13 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
-enum OrderStatus {
+public enum OrderStatus {
 
     NOT_PAY(0, "未付款"),
     PAIED(1, "已付款未发货"),
     SENDED(2, "已发货"),
-    RECEIVED(3, "已收货");
+    RECEIVED(3, "已收货"),
+    CANCEL(4, "取消");
 
     int code;
     String msg;

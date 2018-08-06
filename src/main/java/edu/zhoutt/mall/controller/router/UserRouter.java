@@ -1,13 +1,17 @@
 package edu.zhoutt.mall.controller.router;
 
+import edu.zhoutt.mall.configuration.page.Page;
+import edu.zhoutt.mall.configuration.page.Pageable;
 import edu.zhoutt.mall.pojo.Address;
 import edu.zhoutt.mall.pojo.Car;
 import edu.zhoutt.mall.pojo.Product;
 import edu.zhoutt.mall.pojo.User;
 import edu.zhoutt.mall.service.IAddressService;
 import edu.zhoutt.mall.service.ICarService;
+import edu.zhoutt.mall.service.IOrderService;
 import edu.zhoutt.mall.service.IProductService;
 import edu.zhoutt.mall.vo.CarVo;
+import edu.zhoutt.mall.vo.OrderVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -37,6 +41,9 @@ public class UserRouter {
 
     @Autowired
     private IAddressService addressService;
+
+    @Autowired
+    private IOrderService orderService;
 
     @GetMapping("/")
     public void root(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -84,7 +91,13 @@ public class UserRouter {
     }
 
     @GetMapping("/user/order.html")
-    public String user$order() {
+    public String user$order(HttpSession session, Model model) {
+
+        User user = (User) session.getAttribute("user");
+        Page<OrderVo> page = orderService.getPageByUser(user.getId(), Pageable.of(0, 1000));
+
+        model.addAttribute("list", page.getData());
+
         return "user/order";
     }
 

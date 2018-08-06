@@ -1,4 +1,4 @@
-package edu.zhoutt.mall.pojo;
+package edu.zhoutt.mall.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class OrderVo {
 
     private Long id;
 
@@ -38,4 +38,15 @@ public class Order {
 
     private Date updateTime;
 
+    private String productName;
+
+    private String productImage;
+
+    private String description;
+
+    // 是否已下架 0：未下架， 1：已下架
+    private Integer isDown;
+
+    // 分类Id
+    private Long categoryId;
 }

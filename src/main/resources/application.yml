@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/mall?useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: root
+    url: jdbc:mysql://192.168.0.132:3306/test2db?useUnicode=true&characterEncoding=utf-8
+    username: bztuser
+    password: bzt@2017
 logging:
   level:
     edu.zhoutt.mall: debug

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.zhoutt.mall.dao.IOrderMapper">
+    <resultMap id="OrderVoMap" type="edu.zhoutt.mall.vo.OrderVo">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="address_id" property="addressId"/>
+        <result column="product_id" property="productId"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="getPageByUser" resultType="edu.zhoutt.mall.vo.OrderVo">
+      SELECT o.`id`, o.`user_id` AS userId, o.`name`, o.`phone`, o.`address`, o.`address_id` AS addressId, o.`product_id` AS productId,
+            o.`number`, o.`price`, o.`total`, o.`status`, o.`create_time` AS createTime, o.`update_time` AS updateTime,
+            p.`name` AS productName, p.`image` AS productImage, p.`description` AS description, p.`is_down` AS isDown, p.`category_id` AS categoryId
+            FROM `order` o LEFT JOIN `product` p ON o.`product_id` = p.`id`
+            WHERE o.`user_id` = #{userId}
+            ORDER BY o.`id` DESC
+    </select>
+
+    <select id="getPageByAdmin" resultType="edu.zhoutt.mall.vo.OrderVo">
+      SELECT o.`id`, o.`user_id` AS userId, o.`name`, o.`phone`, o.`address`, o.`address_id` AS addressId, o.`product_id` AS productId,
+            o.`number`, o.`price`, o.`total`, o.`status`, o.`create_time` AS createTime, o.`update_time` AS updateTime,
+            p.`name` AS productName, p.`image` AS productImage, p.`description` AS description, p.`is_down` AS isDown, p.`category_id` AS categoryId
+            FROM `order` o LEFT JOIN `product` p ON o.`product_id` = p.`id`
+            ORDER BY o.`id` DESC
+    </select>
+
+</mapper>
