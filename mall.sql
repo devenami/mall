@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50722
-Source Host           : localhost:3306
-Source Database       : mall
+Source Server         : 9100
+Source Server Version : 50717
+Source Host           : 192.168.0.132:3306
+Source Database       : test2db
 
 Target Server Type    : MYSQL
-Target Server Version : 50722
+Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-08-02 07:43:17
+Date: 2018-08-06 15:05:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `address` (
   `create_time` datetime NOT NULL COMMENT '字典',
   `update_time` datetime NOT NULL COMMENT '字典',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for car
@@ -36,25 +36,13 @@ CREATE TABLE `address` (
 DROP TABLE IF EXISTS `car`;
 CREATE TABLE `car` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `user_id` bigint(20) NOT NULL COMMENT '用户Id',
-  `create_time` datetime NOT NULL COMMENT '字典',
-  `update_time` datetime NOT NULL COMMENT '字典',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Table structure for car_item
--- ----------------------------
-DROP TABLE IF EXISTS `car_item`;
-CREATE TABLE `car_item` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `car_id` bigint(20) NOT NULL COMMENT '购物车Id',
+  `user_id` bigint(20) NOT NULL COMMENT '购物车Id',
   `product_id` bigint(20) NOT NULL COMMENT '产品Id',
   `total` int(11) NOT NULL DEFAULT '1' COMMENT '单个产品的选购数量',
   `create_time` datetime NOT NULL COMMENT '字典',
   `update_time` datetime NOT NULL COMMENT '字典',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for category
@@ -67,7 +55,7 @@ CREATE TABLE `category` (
   `create_time` datetime NOT NULL COMMENT '字典',
   `update_time` datetime NOT NULL COMMENT '字典',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for hot
@@ -80,7 +68,7 @@ CREATE TABLE `hot` (
   `create_time` datetime NOT NULL COMMENT '字典',
   `update_time` datetime NOT NULL COMMENT '字典',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for order
@@ -88,25 +76,20 @@ CREATE TABLE `hot` (
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `address_id` bigint(20) NOT NULL COMMENT '收货地址Id',
-  `status` varchar(255) NOT NULL DEFAULT '0' COMMENT '订单状态，0：未付款，1：已付款未发货，2：已发货，3：已收货',
+  `user_id` bigint(20) NOT NULL COMMENT '用户Id',
+  `name` varchar(30) NOT NULL COMMENT '收件人',
+  `phone` varchar(20) NOT NULL COMMENT '收件方电话',
+  `address_id` bigint(20) NOT NULL COMMENT '订单Id',
+  `address` varchar(100) NOT NULL COMMENT '收件方地址',
+  `product_id` bigint(20) NOT NULL,
+  `number` int(11) NOT NULL,
+  `price` decimal(10,0) NOT NULL,
+  `total` decimal(10,0) NOT NULL COMMENT '产品数量',
+  `status` int(11) NOT NULL,
   `create_time` datetime NOT NULL COMMENT '字典',
   `update_time` datetime NOT NULL COMMENT '字典',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- ----------------------------
--- Table structure for order_item
--- ----------------------------
-DROP TABLE IF EXISTS `order_item`;
-CREATE TABLE `order_item` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `order_id` bigint(20) NOT NULL COMMENT '订单Id',
-  `total` int(11) NOT NULL COMMENT '产品数量',
-  `create_time` datetime NOT NULL COMMENT '字典',
-  `update_time` datetime NOT NULL COMMENT '字典',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for product
@@ -125,7 +108,7 @@ CREATE TABLE `product` (
   `create_time` datetime NOT NULL COMMENT '字典',
   `update_time` datetime NOT NULL COMMENT '字典',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for user
@@ -139,4 +122,4 @@ CREATE TABLE `user` (
   `create_time` datetime NOT NULL COMMENT '字典',
   `update_time` datetime NOT NULL COMMENT '字典',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
