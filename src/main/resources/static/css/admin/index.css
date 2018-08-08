@@ -1,0 +1,56 @@
+.bg-222 {
+    background-color: #222222;
+    opacity: 80%;
+}
+
+/************************ HEADER START ***************************/
+header {
+    height: 25px;
+}
+
+header .content {
+    margin: 0 auto;
+    width: 1000px;
+    text-align: center;
+    line-height: 40px;
+    padding-top: 5px;
+}
+
+header .content .title {
+    color: white;
+    float: left;
+    margin-left: 20px;
+}
+
+header .content a {
+    color: #ffffff;
+}
+
+header .content .user {
+    float: right;
+    width: 330px;
+    margin-right: 50px;
+}
+
+header .content .user a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    float: right;
+}
+
+header .content .user a:link {
+    color: #ffffff;
+}
+
+header .content .user a:hover {
+    color: #ffffff;
+}
+
+header .content .user a:active {
+    color: #ffffff;
+}
+
+header .content .user a:visited {
+    color: #ffffff;
+}
