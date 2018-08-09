@@ -28,6 +28,7 @@
             <a href="/user/car.html" target="_blank">购物车</a>
             <a href="/user/order.html" target="_blank">订单</a>
             <a href="/user/user.html" target="_blank">${Session.user.username}</a>
+            <a href="javascript:" onclick="userLogout()">退出</a>
         <#else>
             <a href="/user/register.html">注册</a>
             <a href="/user/login.html">登录</a>

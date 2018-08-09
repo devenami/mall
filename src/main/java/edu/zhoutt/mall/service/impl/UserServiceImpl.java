@@ -41,6 +41,9 @@ public class UserServiceImpl implements IUserService {
         Assert.hasText(password, "密码不能为空");
         Assert.notNull(UserRole.fromCode(role), "身份信息不能为空");
 
+        int count = userMapper.countByUsernameAndRole(username, role);
+        Assert.isTrue(count == 0, "用户已存在");
+
         Date currTime = new Date();
         password = Md5Util.encode(password);
 

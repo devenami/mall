@@ -19,12 +19,13 @@
 
         <div class="user">
         <#if Session.user??>
+            <a href="javascript:" onclick="userLogout()">退出</a>
 
             <a href="javascript:">${Session.user.username}</a>
 
-            <a href="/admin/product.html">商品管理</a>
-            <a href="/admin/order.html">订单管理</a>
-            <a href="/admin/category.html">分类管理</a>
+            <a href="javascript:" onclick="loadPage('/admin/product.html')">商品管理</a>
+            <a href="javascript:" onclick="loadPage('/admin/order.html')">订单管理</a>
+            <a href="javascript:" onclick="loadPage('/admin/category.html')">分类管理</a>
 
         <#else>
             <a href="/admin/login.html">登录</a>
@@ -33,6 +34,9 @@
     </div>
 </header>
 
+<div id="content">
+
+</div>
 
 <footer class="bg-222">
     Copyright &copy;2018-2020 MY Corporation, All Rights Reserved

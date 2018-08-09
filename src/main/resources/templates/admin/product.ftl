@@ -2,7 +2,10 @@
 
 
 <div>
-    产品管理
+    <div class="add">
+        <button class="btn btn-success" style="width: 100%">新增商品</button>
+
+    </div>
 </div>
 
 

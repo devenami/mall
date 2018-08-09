@@ -55,6 +55,16 @@ public class UserController {
         return HttpResult.success(userService.login(username, password, session));
     }
 
+    @PostMapping("/logout")
+    @ApiOperation("用户退出")
+    public HttpResult<Object> logout(HttpSession session) {
+
+        session.invalidate();
+
+        return HttpResult.success();
+    }
+
+
     @PostMapping("/update/username")
     @ApiOperation("修改用户名")
     @ApiImplicitParams({
