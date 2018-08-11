@@ -126,4 +126,13 @@ public class CategoryServiceImpl implements ICategoryService {
         }
     }
 
+    @Override
+    public List<Category> getAll() {
+        return categoryMapper.findAll();
+    }
+
+    @Override
+    public Category getSingle(Long id) {
+        return categoryMapper.findById(id);
+    }
 }

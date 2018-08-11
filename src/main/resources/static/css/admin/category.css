@@ -1,0 +1,32 @@
+.category-item-update {
+    display: none;
+}
+
+.add .category-item-update {
+    margin-top: 10px;
+}
+
+.add .category-item-update .input-group-prepend {
+    width: 130px;
+}
+
+.add .category-item-update .input-group-prepend .input-group-text {
+    width: 130px;
+}
+
+.list-group-item.list-group-item-action button {
+    float: right;
+    margin: 0 2px;
+}
+
+.list-group-item.list-group-item-action span {
+    display: inline-block;
+    width: 165px;
+}
+
+.category-list-s .list-group {
+    float: left;
+    margin: 20px 5px;
+    display: inline-block;
+    width: 32%;
+}

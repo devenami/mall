@@ -17,4 +17,8 @@ public interface ICategoryService {
     Long delete(Long id);
 
     List<CategoryVo> get(Long id);
+
+    List<Category> getAll();
+
+    Category getSingle(Long id);
 }

@@ -37,4 +37,8 @@ public interface IProductMapper {
 
     @Select("SELECT COUNT(1) FROM product WHERE `id` = #{id}")
     long countById(Long id);
+
+    @Select("SELECT id, name, image, price, description, is_down AS isDown, total, sell, category_id as CategoryId," +
+            " create_time AS createTime, update_time AS updateTime FROM product ")
+    List<Product> findAll();
 }

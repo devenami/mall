@@ -122,7 +122,7 @@ function loadProducts(categoryId, keyword, pageNo) {
 
     let url = '/api/product/get/category/keyword';
 
-    let param = {page_no: pageNo, page_size: 20, category_id: null, keyword: null};
+    let param = {page_no: pageNo, page_size: 10, category_id: null, keyword: null};
     if (categoryId) {
         globalCategoryId = categoryId;
         globalKeyword = null;
@@ -176,7 +176,7 @@ function product_detail(id) {
 
 function jumpToPage(flag) {
     let pageNo = $('#page-no').text();
-    if (flag) {
+    if (!flag) {
         // 上一页
         if (pageNo > 1) {
             btnClickLoadProduct(pageNo - 2);

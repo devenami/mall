@@ -9,7 +9,6 @@ import edu.zhoutt.mall.helper.FTPHelper;
 import edu.zhoutt.mall.pojo.Category;
 import edu.zhoutt.mall.pojo.Product;
 import edu.zhoutt.mall.service.IProductService;
-import edu.zhoutt.mall.util.FileUtil;
 import edu.zhoutt.mall.util.StringUtil;
 import edu.zhoutt.mall.util.UUIDUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,13 +61,12 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public Long update(Long id, String name, String image, BigDecimal price, String description, Long total, Long categoryId) {
+    public Long update(Long id, String name, BigDecimal price, String description, Long total, Long categoryId) {
 
         Product product = productMapper.findById(id);
         Assert.notNull(product, "商品不存在");
 
         product.setName(name);
-        product.setImage(image);
         product.setPrice(price);
         product.setDescription(description);
         product.setCategoryId(categoryId);
@@ -172,4 +170,8 @@ public class ProductServiceImpl implements IProductService {
         return absPath;
     }
 
+    @Override
+    public List<Product> getAll() {
+        return productMapper.findAll();
+    }
 }

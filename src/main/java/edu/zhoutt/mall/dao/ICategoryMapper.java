@@ -13,7 +13,7 @@ public interface ICategoryMapper {
             "VALUES (#{category.parentId}, #{category.name}, #{category.createTime}, #{category.updateTime})")
     void save(@Param("category") Category category);
 
-    @Select("SELECT id, parent_id AS productId, name, create_time AS createTime, update_time AS updateTime " +
+    @Select("SELECT id, parent_id AS parentId, name, create_time AS createTime, update_time AS updateTime " +
             "FROM category WHERE id = #{id}")
     Category findById(Long id);
 
@@ -31,4 +31,7 @@ public interface ICategoryMapper {
     @Select("SELECT COUNT(id) FROM category WHERE parent_id = #{parentId} AND name = #{name}")
     long countByParentIdAndName(@Param("parentId") Long parentId, @Param("name") String name);
 
+    @Select("SELECT id, parent_id AS productId, name, create_time AS createTime, update_time AS updateTime " +
+            "FROM category ")
+    List<Category> findAll();
 }

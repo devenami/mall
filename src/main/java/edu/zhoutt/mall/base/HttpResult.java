@@ -61,7 +61,7 @@ public class HttpResult<T> {
     }
 
     public static <T> HttpResult<T> customer(int code, String msg, T data, Integer pageNo, Integer pageSize, Long totalElements, Long totalPages) {
-        return new HttpResult<>(data, code, null, pageNo, pageSize, totalElements, totalElements);
+        return new HttpResult<>(data, code, null, pageNo, pageSize, totalElements, totalPages);
     }
 
     @SuppressWarnings("unchecked")
@@ -69,7 +69,7 @@ public class HttpResult<T> {
         if (data instanceof Page) {
             Page page = (Page) data;
             List pageData = page.getData();
-            return customer(1, null, pageData, page.getPageNo(), page.getPageSize(), page.getTotalElements(), page.getTotalElements());
+            return customer(1, null, pageData, page.getPageNo(), page.getPageSize(), page.getTotalElements(), page.getTotalPages());
         }
         return error("分页异常");
     }

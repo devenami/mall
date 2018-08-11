@@ -1,0 +1,15 @@
+.product-item-update {
+    display: none;
+}
+
+.add .product-item-update {
+    margin-top: 10px;
+}
+
+.add .product-item-update .input-group-prepend {
+    width: 130px;
+}
+
+.add .product-item-update .input-group-prepend .input-group-text {
+    width: 130px;
+}

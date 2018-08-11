@@ -1,0 +1,11 @@
+.category-item-update {
+    margin-top: 10px;
+}
+
+.category-item-update .input-group-prepend {
+    width: 130px;
+}
+
+.category-item-update .input-group-prepend .input-group-text {
+    width: 130px;
+}

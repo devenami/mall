@@ -38,6 +38,8 @@
 
 </div>
 
+<div class="float-msg" id="id-float-msg"></div>
+
 <footer class="bg-222">
     Copyright &copy;2018-2020 MY Corporation, All Rights Reserved
 </footer>

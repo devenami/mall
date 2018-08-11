@@ -70,4 +70,10 @@ public class CategoryController {
         return HttpResult.success(categoryService.get(id));
     }
 
+    @GetMapping("/get/all")
+    @ApiOperation("查询所有分类")
+    public HttpResult<List<Category>> getAll() {
+        return HttpResult.success(categoryService.getAll());
+    }
+
 }

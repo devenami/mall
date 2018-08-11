@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/product")
@@ -52,23 +53,21 @@ public class ProductController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "id", value = "商品id", required = true),
             @ApiImplicitParam(name = "name", value = "商品名称", required = true),
-            @ApiImplicitParam(name = "image", value = "商品图片", required = true),
             @ApiImplicitParam(name = "price", value = "商品价格", required = true),
             @ApiImplicitParam(name = "description", value = "商品描述"),
             @ApiImplicitParam(name = "total", value = "商品总数量", required = true),
             @ApiImplicitParam(name = "category_id", value = "商品所属分类Id", required = true)
     })
-    public HttpResult<Long> update(Long id, String name, String image, BigDecimal price, String description,
+    public HttpResult<Long> update(Long id, String name, BigDecimal price, String description,
                                    Long total, @RequestParam("category_id") Long categoryId) {
 
         Assert.notNull(id, "主键不能为空");
         Assert.hasText(name, "商品名称不能为空");
-        Assert.hasText(image, "商品图片不能为空");
         Assert.notNull(price, "商品价格不能为空");
         Assert.notNull(total, "商品数量不能为空");
         Assert.notNull(categoryId, "商品所属分类不能为空");
 
-        return HttpResult.success(productService.update(id, name, image, price, description, total, categoryId));
+        return HttpResult.success(productService.update(id, name, price, description, total, categoryId));
     }
 
     @PostMapping("/is_down/{id}/{isDown}")
@@ -132,6 +131,11 @@ public class ProductController {
         return HttpResult.page(productService.getProductListByPage(categoryId, keyword, pageable));
     }
 
+    @GetMapping("/get/all")
+    @ApiOperation("获取所有的产品")
+    public HttpResult<List<Product>> getAll() {
+        return HttpResult.success(productService.getAll());
+    }
 
     @PostMapping("/file/upload")
     @ApiOperation("产品文件上传")

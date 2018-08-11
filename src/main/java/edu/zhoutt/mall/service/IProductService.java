@@ -7,12 +7,13 @@ import edu.zhoutt.mall.pojo.Product;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface IProductService {
 
     Product add(String name, String image, BigDecimal price, String description, Long total, Long categoryId);
 
-    Long update(Long id, String name, String image, BigDecimal price, String description, Long total, Long categoryId);
+    Long update(Long id, String name, BigDecimal price, String description, Long total, Long categoryId);
 
     Long changeIsDown(Long id, IsDown isDown);
 
@@ -24,4 +25,5 @@ public interface IProductService {
 
     String fileUpload(MultipartFile file);
 
+    List<Product> getAll();
 }
