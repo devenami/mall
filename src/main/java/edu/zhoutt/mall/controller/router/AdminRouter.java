@@ -34,6 +34,11 @@ public class AdminRouter {
         return "admin/login";
     }
 
+    @GetMapping("/user.html")
+    public String admin$user() {
+        return "admin/user";
+    }
+
     @GetMapping("/order.html")
     public String admin$order() {
         return "admin/order";

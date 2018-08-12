@@ -37,10 +37,6 @@ public class UserServiceImpl implements IUserService {
     @Transactional(propagation = Propagation.REQUIRED)
     public User register(String username, String password, Integer role) {
 
-        Assert.hasText(username, "用户名不能为空");
-        Assert.hasText(password, "密码不能为空");
-        Assert.notNull(UserRole.fromCode(role), "身份信息不能为空");
-
         int count = userMapper.countByUsernameAndRole(username, role);
         Assert.isTrue(count == 0, "用户已存在");
 
@@ -106,6 +102,19 @@ public class UserServiceImpl implements IUserService {
         Assert.isTrue(user.getRole() == userRole.getCode(), "用户角色信息验证失败");
 
         user.setPassword(Md5Util.encode(password));
+
+        return userMapper.update(user);
+    }
+
+    @Override
+    public Long resetPassword(String username, String password, Integer role) {
+
+        User user = userMapper.findByUsernameAndRole(username, role);
+
+        Assert.notNull(user, "用户不存在");
+
+        user.setPassword(Md5Util.encode(password));
+        user.setUpdateTime(new Date());
 
         return userMapper.update(user);
     }

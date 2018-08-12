@@ -23,6 +23,10 @@
 
             <a href="javascript:">${Session.user.username}</a>
 
+            <#if Session.user.role == 2>
+            <a href="javascript:" onclick="loadPage('/admin/user.html')">密码管理</a>
+            </#if>
+
             <a href="javascript:" onclick="loadPage('/admin/product.html')">商品管理</a>
             <a href="javascript:" onclick="loadPage('/admin/order.html')">订单管理</a>
             <a href="javascript:" onclick="loadPage('/admin/category.html')">分类管理</a>

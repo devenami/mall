@@ -22,4 +22,8 @@ public interface IUserMapper {
     int countByUsernameAndRole(@Param("username") String username, @Param("role") int role);
 
     Long update(@Param("user") User user);
+
+    @Select("SELECT id, username, password, role, create_time AS createTime, update_time AS updateTime " +
+            "FROM user where username = #{username} and role = #{role}")
+    User findByUsernameAndRole(@Param("username") String username, @Param("role") Integer role);
 }

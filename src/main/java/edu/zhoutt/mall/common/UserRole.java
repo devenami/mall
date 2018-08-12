@@ -11,7 +11,8 @@ import lombok.Getter;
 public enum UserRole {
 
     USER(0, "普通用户"),
-    ADMIN(1, "管理员");
+    ADMIN(1, "管理员"),
+    ROOT(2, "超级管理员");
 
     int code;
     String msg;

@@ -42,6 +42,11 @@ public class UserController {
             @ApiImplicitParam(name = "role", value = "用户角色:0普通用户,1管理员", dataType = "int", required = true)
     })
     public HttpResult<User> register(String username, String password, Integer role) {
+
+        Assert.hasText(username, "用户名不能为空");
+        Assert.hasText(password, "密码不能为空");
+        Assert.notNull(UserRole.fromCode(role), "身份信息不能为空");
+
         return HttpResult.success(userService.register(username, password, role));
     }
 
@@ -103,5 +108,30 @@ public class UserController {
         }
 
         return HttpResult.success(userService.updatePassword((User) userObj, password, userRole));
+    }
+
+    @PostMapping("/update/password/reset")
+    @ApiOperation("超级管理员重置密码")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username", value = "用户名", dataType = "string", required = true),
+            @ApiImplicitParam(name = "password", value = "密码", dataType = "string", required = true),
+            @ApiImplicitParam(name = "role", value = "用户角色:0普通用户,1管理员", dataType = "int", required = true)
+    })
+    public HttpResult<Long> resetPassword(HttpSession session, String username, String password, Integer role) {
+
+        User user = (User) session.getAttribute("user");
+
+        Assert.isTrue(UserRole.fromCode(user.getRole()).equals(UserRole.ROOT), "越权");
+        Assert.hasText(username, "用户名不能为空");
+        Assert.hasText(password, "密码不能为空");
+        Assert.notNull(UserRole.fromCode(role), "身份信息不能为空");
+
+        return HttpResult.success(userService.resetPassword(username, password, role));
+    }
+
+    @GetMapping("/get/current")
+    @ApiOperation("获取当前登录的用户信息")
+    public HttpResult<Object> getCurrentUser(HttpSession session) {
+        return HttpResult.success(session.getAttribute("user"));
     }
 }

@@ -16,4 +16,6 @@ public interface IUserService {
     Long updateUsername(HttpSession session, User user, String username, UserRole userRole);
 
     Long updatePassword(User user, String password, UserRole userRole);
+
+    Long resetPassword(String username, String password, Integer role);
 }
