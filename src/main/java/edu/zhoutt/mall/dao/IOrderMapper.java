@@ -29,4 +29,6 @@ public interface IOrderMapper {
     Page<OrderVo> getPageByUser(@Param("userId") Long userId, @Param("pageable") Pageable pageable);
 
     Page<OrderVo> getPageByAdmin(@Param("pageable") Pageable pageable);
+
+    OrderVo findVoById(Long id);
 }

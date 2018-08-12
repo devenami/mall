@@ -15,4 +15,6 @@ public interface IOrderService {
     Page<OrderVo> getPageByUser(Long userId, Pageable pageable);
 
     Page<OrderVo> getPageByAdmin(Pageable pageable);
+
+    OrderVo getSingle(Long id);
 }

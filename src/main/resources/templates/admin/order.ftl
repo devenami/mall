@@ -1,8 +1,10 @@
-<link rel="stylesheet" href="/css/admin/category.css"/>
+<link rel="stylesheet" href="/css/admin/order.css"/>
 
 
 <div>
-    订单管理
+    <div class="list-group" id="order-list" style="margin-top: 30px">
+        <a href="javascript:" class="list-group-item list-group-item-action">cvbnm,kjhgcvbn</a>
+    </div>
 </div>
 
 

@@ -6,7 +6,6 @@ import edu.zhoutt.mall.configuration.page.Pageable;
 import edu.zhoutt.mall.pojo.Order;
 import edu.zhoutt.mall.pojo.User;
 import edu.zhoutt.mall.service.IOrderService;
-import edu.zhoutt.mall.vo.OrderVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -16,8 +15,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/order")
@@ -76,7 +73,7 @@ public class OrderController {
 
         User user = (User) session.getAttribute("user");
 
-        return HttpResult.success(orderService.getPageByUser(user.getId(), pageable));
+        return HttpResult.page(orderService.getPageByUser(user.getId(), pageable));
     }
 
     @GetMapping("/get/page/admin")
@@ -85,8 +82,7 @@ public class OrderController {
             @ApiImplicitParam(name = "page_no", value = "页码", required = true),
             @ApiImplicitParam(name = "page_size", value = "每页显示的数量", required = true)
     })
-    public HttpResult getPageByAdmin(HttpSession session,
-                                     @RequestParam("page_no") Integer pageNo,
+    public HttpResult getPageByAdmin(@RequestParam("page_no") Integer pageNo,
                                      @RequestParam("page_size") Integer pageSize) {
 
         Assert.notNull(pageNo, "页码不能为空");
@@ -94,9 +90,8 @@ public class OrderController {
 
         Pageable pageable = Pageable.of(pageNo, pageSize);
 
-        return HttpResult.success(orderService.getPageByAdmin(pageable));
+        return HttpResult.page(orderService.getPageByAdmin(pageable));
     }
-
 
 
 }

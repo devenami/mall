@@ -1,0 +1,15 @@
+.order-item-update {
+    margin-top: 10px;
+}
+
+.order-item-update .input-group-prepend {
+    width: 130px;
+}
+
+.order-item-update .input-group-prepend .input-group-text {
+    width: 130px;
+}
+
+.error-wrapper {
+    display: none;
+}

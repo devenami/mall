@@ -2,6 +2,8 @@ package edu.zhoutt.mall.controller.router;
 
 import edu.zhoutt.mall.pojo.Category;
 import edu.zhoutt.mall.service.ICategoryService;
+import edu.zhoutt.mall.service.IOrderService;
+import edu.zhoutt.mall.vo.OrderVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,9 @@ public class AdminRouter {
 
     @Autowired
     private ICategoryService categoryService;
+
+    @Autowired
+    private IOrderService orderService;
 
     @GetMapping("/index.html")
     public String admin$index() {
@@ -53,4 +58,15 @@ public class AdminRouter {
         model.addAttribute("list", all);
         return "admin/category_update";
     }
+
+    @GetMapping("/order_detail.html")
+    public String admin$orderDetail(Long id, Model model) {
+
+        OrderVo orderVo = orderService.getSingle(id);
+
+        model.addAttribute("order", orderVo);
+
+        return "admin/order_detail";
+    }
+
 }

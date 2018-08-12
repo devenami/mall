@@ -94,4 +94,9 @@ public class OrderServiceImpl implements IOrderService {
     public Page<OrderVo> getPageByAdmin(Pageable pageable) {
         return orderMapper.getPageByAdmin(pageable);
     }
+
+    @Override
+    public OrderVo getSingle(Long id) {
+        return orderMapper.findVoById(id);
+    }
 }
